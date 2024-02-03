@@ -1,0 +1,137 @@
+User
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown Timer</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin-top: 50px;
+            background-color: black;
+        }
+        #countdown {
+            font-size: 2em;
+            color: red;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 45px;
+        }
+        #completed-message {
+            display: none;
+            font-size: 1.5em;
+            color: green;
+            margin-top: 0px;
+        }
+        #completion-button {
+            display: none;
+            padding: 10px;
+            font-size: 1em;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            margin-left: 47%;
+        }
+        #video-background {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        .advance {
+            color: green;
+            font-size: 40px;
+            margin-top: 15%;
+            font-weight: bold;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+
+        @media only screen and (max-width: 600px) {
+            #countdown {
+                font-size: 1.5em;
+            }
+            .advance {
+                font-size: 30px;
+            }
+            #completion-button{
+              margin-left: 40%;
+            }
+            .advance{
+              margin-top: 75%;
+            }
+        }
+       
+    </style>
+</head>
+<body>
+<video id="video-background" autoplay muted loop>
+    <source src="birthday.mp4.mp4" type="video/mp4">
+</video>
+<h1 style="color: green" class="advance">Advance Happy Birthday Devil</h1>
+<div id="countdown" class="center-countdown">8d 02:04:00</div>
+<div id="completed-message">Countdown completed!</div>
+<button id="completion-button" onclick="handleCompletion()">Click me!</button>
+
+<script>
+    function getRemainingTime() {
+            const targetDate = new Date('February 11, 2024 00:00:00 GMT+0000');
+            const currentTime = new Date();
+            const remainingTime = Math.max(targetDate - currentTime, 0) / 1000;
+
+            return remainingTime;
+        }
+
+    let countdownElement = document.getElementById('countdown');
+    let completedMessage = document.getElementById('completed-message');
+    let completionButton = document.getElementById('completion-button');
+    let videobackground = document.getElementById('video-background');
+    let advanceMessage = document.querySelector('.advance');
+
+    function updateCountdown() {
+        const remainingTime = getRemainingTime();
+        let days = Math.floor(remainingTime / (24 * 60 * 60));
+        let hours = Math.floor((remainingTime % (24 * 60 * 60)) / (60 * 60));
+        let minutes = Math.floor((remainingTime % (60 * 60)) / 60);
+        let seconds = Math.floor(remainingTime % 60);
+
+        countdownElement.textContent = `${days}d ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+         
+        if (remainingTime > 0) {
+            setTimeout(updateCountdown, 1000);
+        } else {
+            showCompletion();
+        }
+    }
+
+    function showCompletion() {
+        completedMessage.style.display = 'block';
+        completionButton.style.display = 'block';
+        videobackground.style.display = 'block';
+        advanceMessage.style.display = 'none'; // hide advance message
+    }
+
+    function handleCompletion() {
+        window.location.href = 'wish.html';
+        alert("Chusindi salu le kani okay kottu")
+    }
+
+    if (!localStorage.getItem('initialTimestamp')) {
+        localStorage.setItem('initialTimestamp', Math.floor(Date.now() / 1000));
+    }
+
+    updateCountdown();
+</script>
+
+</body>
+</html>
