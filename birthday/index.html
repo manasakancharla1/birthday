@@ -87,7 +87,7 @@ User
     function getRemainingTime() {
     const targetDate = new Date();
     targetDate.setDate(targetDate.getDate() + 6); // Add 6 days
-    targetDate.setHours(15, 20, 0); // Set hours, minutes, and seconds
+    targetDate.setHours(24, 0, 0); // Set hours, minutes, and seconds
 
     const currentTime = new Date();
     const remainingTime = Math.max(targetDate - currentTime, 0) / 1000;
