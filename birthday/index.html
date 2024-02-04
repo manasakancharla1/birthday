@@ -85,12 +85,15 @@ User
 
 <script>
     function getRemainingTime() {
-            const targetDate = new Date('February 10, 2024 23:59:00 GMT+0000');
-            const currentTime = new Date();
-            const remainingTime = Math.max(targetDate - currentTime, 0) / 1000;
+    const targetDate = new Date();
+    targetDate.setDate(targetDate.getDate() + 6); // Add 6 days
+    targetDate.setHours(15, 20, 0); // Set hours, minutes, and seconds
 
-            return remainingTime;
-        }
+    const currentTime = new Date();
+    const remainingTime = Math.max(targetDate - currentTime, 0) / 1000;
+
+    return remainingTime;
+}
 
     let countdownElement = document.getElementById('countdown');
     let completedMessage = document.getElementById('completed-message');
