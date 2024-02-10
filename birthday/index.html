@@ -79,7 +79,7 @@ User
     <source src="birthday.mp4.mp4" type="video/mp4">
 </video>
 <h1 style="color: green" class="advance">Advance Happy Birthday Devil</h1>
-<div id="countdown" class="center-countdown">0d 15:24:00</div>
+<div id="countdown" class="center-countdown">0d 00:00:00</div>
 <div id="completed-message">Countdown completed!</div>
 <button id="completion-button" onclick="handleCompletion()">Click me!</button>
 
@@ -87,7 +87,7 @@ User
     function getRemainingTime() {
     const targetDate = new Date();
     targetDate.setDate(targetDate.getDate() + 0); // Add 6 days
-    targetDate.setHours(24, 0, 0); // Set hours, minutes, and seconds
+    targetDate.setHours(0, 0, 0); // Set hours, minutes, and seconds
 
     const currentTime = new Date();
     const remainingTime = Math.max(targetDate - currentTime, 0) / 1000;
