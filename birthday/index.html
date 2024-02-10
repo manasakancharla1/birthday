@@ -85,15 +85,15 @@ User
 
 <script>
     function getRemainingTime() {
-    const targetDate = new Date();
-    targetDate.setDate(targetDate.getDate() + 0); // Add 6 days
-    targetDate.setHours(0, 0, 0); // Set hours, minutes, and seconds
+        const targetDate = new Date();
+        targetDate.setDate(targetDate.getDate() + 0); // Add 0 days
+        targetDate.setHours(0, 0, 0); // Set hours, minutes, and seconds
 
-    const currentTime = new Date();
-    const remainingTime = Math.max(targetDate - currentTime, 0) / 1000;
+        const currentTime = new Date();
+        const remainingTime = Math.max(targetDate - currentTime, 0) / 1000;
 
-    return remainingTime;
-}
+        return remainingTime;
+    }
 
     let countdownElement = document.getElementById('countdown');
     let completedMessage = document.getElementById('completed-message');
@@ -103,14 +103,14 @@ User
 
     function updateCountdown() {
         const remainingTime = getRemainingTime();
-        let days = Math.floor(remainingTime / (24 * 60 * 60));
-        let hours = Math.floor((remainingTime % (24 * 60 * 60)) / (60 * 60));
-        let minutes = Math.floor((remainingTime % (60 * 60)) / 60);
-        let seconds = Math.floor(remainingTime % 60);
 
-        countdownElement.textContent = `${days}d ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-         
         if (remainingTime > 0) {
+            let days = Math.floor(remainingTime / (24 * 60 * 60));
+            let hours = Math.floor((remainingTime % (24 * 60 * 60)) / (60 * 60));
+            let minutes = Math.floor((remainingTime % (60 * 60)) / 60);
+            let seconds = Math.floor(remainingTime % 60);
+
+            countdownElement.textContent = `${days}d ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
             setTimeout(updateCountdown, 1000);
         } else {
             showCompletion();
@@ -126,7 +126,7 @@ User
 
     function handleCompletion() {
         window.location.href = 'wish.html';
-        alert("Chusindi salu le kani okay kottu")
+        alert("Chusindi salu le kani okay kottu");
     }
 
     if (!localStorage.getItem('initialTimestamp')) {
@@ -135,6 +135,7 @@ User
 
     updateCountdown();
 </script>
+
 
 </body>
 </html>
